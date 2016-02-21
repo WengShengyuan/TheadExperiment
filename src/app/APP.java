@@ -11,7 +11,7 @@ public class APP {
 	
 	public static void main(String[] args) {
 //		new TaskOne(1).enableExeLimit().enableTimeLimit().setTimeLimit(1000L).setExeLimit(3).setInterval(30L).start();
-		//		new TaskOne().enableTimeLimit().setTimeLimit(5500L).setInterval(30L).start();
+//		new TaskOne().enableTimeLimit().setTimeLimit(5500L).setInterval(30L).start();
 		BlockingQueue queue = new LinkedBlockingQueue<Runnable>(3);
 		ThreadPoolExecutor pool = new ThreadPoolExecutor(3, 5, 5L,TimeUnit.SECONDS, queue, new ThreadPoolExecutor.DiscardPolicy());
 		
