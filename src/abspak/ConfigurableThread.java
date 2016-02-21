@@ -9,11 +9,10 @@ public class ConfigurableThread extends Thread {
 	private boolean enableExeLimit = false;
 	private Date firstExeTime;
 	private Long timeInterval = 1000L;
-
 	private Integer exeLimit = 0;
 	private Long timeLimit = 0L;
 	
-	private Integer tryCount = 0;
+	protected Integer tryCount = 0;
 	protected boolean successFlag = false; 
 	
 	@Override
@@ -26,7 +25,6 @@ public class ConfigurableThread extends Thread {
 		try {
 			
 			while(execuble()){
-//				System.out.println("第 " + this.tryCount + " 次尝试");
 				doRun();
 				tryCount ++;
 				Thread.currentThread().sleep(this.timeInterval);
@@ -40,7 +38,7 @@ public class ConfigurableThread extends Thread {
 		}
 	}
 	
-	public void doRun() throws Exception{
+	protected void doRun() throws Exception{
 		throw new Exception("还未声明实现方法");
 	}
 	
