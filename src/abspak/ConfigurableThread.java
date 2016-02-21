@@ -34,7 +34,7 @@ public class ConfigurableThread extends Thread {
 			return;
 			
 		} catch (Exception e) {
-			System.out.println("doRun 出现异常 : "+ e);
+			onError(e);
 		}
 	}
 	
@@ -45,23 +45,40 @@ public class ConfigurableThread extends Thread {
 	private boolean execuble(){
 		if(enableTimeLimit && 
 				(new Date().getTime() - this.firstExeTime.getTime()) > this.timeLimit){
-			System.out.println("执行时间超时，线程结束");
+			onTimeout();
 			return false;
 		}
 		
 		if(enableExeLimit && 
 				this.tryCount > this.exeLimit){
-			System.out.println("尝试次数超出，线程结束");
+			onExeout();
 			return false;
 		}
 		
 		if(successFlag){
-			System.out.println("任务执行成功，线程结束");
+			onSuccess();
 			return false;
 		}
 		
 		return true;
 	}
+	
+	protected void onTimeout() {
+		System.out.println("执行时间超时，线程结束");
+	}
+	
+	protected void onExeout() {
+		System.out.println("尝试次数超出，线程结束");
+	}
+	
+	protected void onSuccess() {
+		System.out.println("任务执行成功，线程结束");
+	}
+	
+	protected void onError(Exception e) {
+		System.out.println("doRun 出现异常 : "+ e);
+	}
+	
 	
 	public final ConfigurableThread enableTimeLimit() {
 		this.enableTimeLimit = true;
