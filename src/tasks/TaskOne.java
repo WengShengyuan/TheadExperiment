@@ -1,5 +1,6 @@
 package tasks;
 
+import abspak.Callable;
 import abspak.ConfigurableThread;
 
 public class TaskOne extends ConfigurableThread {
@@ -7,8 +8,8 @@ public class TaskOne extends ConfigurableThread {
 	private int i = 0;
 	private int id = 0;
 
-	public TaskOne(int id) {
-		super();
+	public TaskOne(int id, Callable callable) {
+		super(callable);
 		this.id = id;
 	}
 
